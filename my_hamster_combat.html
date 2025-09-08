@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="body">
+        <header class="header">
+        <div class="nav__up container">
+            <div class="nav__up_left">
+            </div>
+            <ul class="nav_up_list" >
+                <li class="nav_up_list_link"><a href="./index.html">Главное</a></li>
+                <li class="nav_up_list_link"><a href="./my_hamster_combat.html">Кликер</a></li>
+                <li class="nav_up_list_link"><a href="./windows.builds.html">Скачать винду</a></li>
+                <li class="nav_up_list_link"><a href="https://github.com/artemkurbanov">Профиль github автора</a></li>
+                <li class="nav_up_list_link"><a href="https://www.youtube.com/@sigmaArtemka">Канал автора на ютубе</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <title>Simple Clicker Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        #game-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #clicker {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background-color: #FF9F43;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            user-select: none;
+            transition: transform 0.1s;
+            border: 5px solid #FF7F00;
+            box-shadow: 0 4px 0 #CC6600;
+        }
+        
+        #clicker:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 0 #CC6600;
+        }
+        
+        #counter {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #333;
+        }
+        
+        #upgrades {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .upgrade {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .upgrade:hover {
+            background-color: #2980b9;
+        }
+        
+        .upgrade:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Hamster Clicker</h1>
+        <div id="counter">0 clicks</div>
+        <div id="clicker">Click Me!</div>
+        
+        <div id="upgrades">
+            <button class="upgrade" onclick="buyAutoClicker()" id="auto-clicker">
+                Auto-Clicker (10 clicks)
+            </button>
+            <button class="upgrade" onclick="buyMultiplier()" id="multiplier">
+                Multiplier x2 (50 clicks)
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // Game variables
+        let clicks = 0;
+        let clickValue = 1;
+        let autoClickers = 0;
+        let autoClickerCost = 10;
+        let multiplierCost = 50;
+        
+        // DOM elements
+        const clicker = document.getElementById('clicker');
+        const counter = document.getElementById('counter');
+        const clickSound = document.getElementById('clickSound');
+        const upgradeSound = document.getElementById('upgradeSound');
+        
+        // Initialize the game
+        updateCounter();
+        
+        // Click handler
+        clicker.addEventListener('click', function() {
+            clicks += clickValue;
+            updateCounter();
+            
+            // Play click sound
+            clickSound.currentTime = 0;
+            clickSound.play();
+            
+            // Add animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+        });
+        
+        // Auto-clicker function
+        setInterval(function() {
+            if (autoClickers > 0) {
+                clicks += autoClickers * clickValue;
+                updateCounter();
+            }
+        }, 1000);
+        
+        // Update counter display
+        function updateCounter() {
+            counter.textContent = clicks + ' clicks';
+            
+            // Update upgrade buttons
+            document.getElementById('auto-clicker').disabled = clicks < autoClickerCost;
+            document.getElementById('multiplier').disabled = clicks < multiplierCost;
+        }
+        
+        // Buy auto-clicker
+        function buyAutoClicker() {
+            if (clicks >= autoClickerCost) {
+                clicks -= autoClickerCost;
+                autoClickers++;
+                autoClickerCost = Math.floor(autoClickerCost * 1.5);
+                document.getElementById('auto-clicker').textContent = 
+                    `Auto-Clicker (${autoClickerCost} clicks)`;
+                updateCounter();
+                upgradeSound.play();
+            }
+        }
+        
+        // Buy multiplier
+        function buyMultiplier() {
+            if (clicks >= multiplierCost) {
+                clicks -= multiplierCost;
+                clickValue *= 2;
+                multiplierCost = Math.floor(multiplierCost * 3);
+                document.getElementById('multiplier').textContent = 
+                    `Multiplier x${clickValue} (${multiplierCost} clicks)`;
+                updateCounter();
+                upgradeSound.play();
+            }
+        }
+    </script>
+
+
+
+    <h3 class="h3-1" style="color: white">История создания кликера</h3>
+    <h3 class="h3-1" style="color: white">Сидел сидел и думал (что таково интересного добавить на сайт?) и решил спросить chat gpt итого он предложил добавить кликер или мини игру и выбрал кликер.</h3>
+    <h3 class="h3-1" style="color: white">Из за того что я не умею делать игры на html и на js в общем решил дать задание deepseek и он создал данный кликер</h3>
+    <h3 class="h3-1" style="color: white">Итого данный кликер сделанный на нейронке deepseek</h3>
+
+</body>
+</html>
+
+    <footer class="footer">
+        <p>© 2025 L_UX.gitlab.io // L_UX</p>
+    </footer>

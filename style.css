@@ -1,0 +1,124 @@
+.header{
+    padding: 23px;
+    background: rgb(73, 69, 69);
+    display: flex;
+    justify-content: right;
+    max-height: 30px;
+    font-style: white;
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    margin-right: 50px;
+}        
+
+.body{
+    background-color: rgb(34, 28, 28);
+    font-family: 'roboto';
+}
+
+h1 {
+    display: flex;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    justify-content: center;
+}
+
+.h3{
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 100px;
+}
+
+.btn{
+    display: flex;
+    width: auto;
+    padding: 10px 10px;
+    text-align: center;
+    background: black;
+    margin-right: 70px;
+    margin-left: 70%;
+    margin-top: 17px;
+    position: relative;
+    top: -150px;  
+}
+
+.h3-1{
+    justify-content: center;
+    margin-top: 30px;
+    margin-right: px; 
+}
+
+footer {
+    background-color: #191919;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+    display: flex
+}
+
+
+.nav__up{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 0;
+}
+
+.nav__up_left{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 5px;
+}
+.nav__up_left span{
+color: var(--white);
+font-family: var(--RR);
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+}
+
+
+.nav_up_list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+}
+.nav_up_list a{
+   color: var(--white);
+   font-family: var(--RR);
+   font-style: normal;
+   font-weight: 700;
+   font-size: 17px;
+   line-height: 19px;
+}
+
+:root {
+    --white: white;
+    --black: black;
+}
+
+.btn1{
+    display: flex;
+    width: auto;
+    padding: 10px 10px;
+    text-align: center;
+    background: black;
+    margin-right: 70px;
+    margin-left: 70%;
+    margin-top: -10px;
+    position: relative;
+    top: -1px;    
+}
